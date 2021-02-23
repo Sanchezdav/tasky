@@ -1,0 +1,35 @@
+<header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+  <div class="flex-1 flex justify-between items-center">
+    <% if user_signed_in? %>
+      <%= link_to Rails.configuration.application_name, authenticated_root_path, class: "text-xl font-bold" %>
+    <% else %>
+      <%= link_to Rails.configuration.application_name, unauthenticated_root_path, class: "text-xl font-bold" %>
+    <% end %>
+  </div>
+
+  <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+  <input class="hidden" type="checkbox" id="menu-toggle" />
+
+  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+    <nav>
+      <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
+        <% if user_signed_in? %>
+          <%= link_to "Settings", edit_user_registration_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %>
+        <% else %>
+          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %></li>
+          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" %></li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <% if user_signed_in? %>
+      <%= link_to "#", id: "navbar-dropdown", class: "lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor" do %>
+        <%= image_tag avatar(current_user.email, 60), height: 30, width: 30, class: "rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" %>
+      <% end %>
+
+      <%= link_to destroy_user_session_path, method: :delete, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" do %>
+        <i class="fas fa-sign-out-alt"></i>
+      <% end %>
+    <% end %>
+  </div>
+</header>

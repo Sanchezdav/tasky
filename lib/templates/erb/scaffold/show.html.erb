@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
+  <div class="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 bg-white sm:mx-0">
+    <div class="flex flex-col w-full p-4">
+      <div class="flex flex-col flex-1 justify-center mb-8">
+        <% attributes.reject(&:password_digest?).each do |attribute| -%>
+          <p class="text-2xl font-semibold"><%= attribute.human_name %>:</p>
+          <p class="leading-normal"><%%= @<%= singular_table_name %>.<%= attribute.name %> %></p>
+        <% end -%>
+        <div class="flex items-center justify-start mt-6">
+          <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-primary mr-4" %>
+          <%%= link_to 'Back', <%= index_helper %>_path, class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
