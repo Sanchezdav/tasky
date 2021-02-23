@@ -1,0 +1,31 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="flex flex-col mt-4">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'flex-grow input' %>
+  </div>
+
+  <div class="flex flex-col mt-4">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'flex-grow input h-36' %>
+  </div>
+
+  <div class="flex flex-col mt-4">
+    <% if project.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', project, method: :delete, class: "text-red-500", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <div class="flex flex-col">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

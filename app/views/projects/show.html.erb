@@ -1,0 +1,25 @@
+<div class="flex flex-col items-center justify-center">
+  <div class="flex items-center justify-between mb-5">
+    <h1 class="text-xl mr-5"><%= @project.name %></h1>
+    <div class="flex items-center">
+      <%= link_to 'All Projects', authenticated_root_path, class: 'text-blue-500 mr-5' %>
+      <%= link_to 'Edit', edit_project_path(@project), class: 'text-blue-500' %>
+    </div>
+  </div>
+  <div class="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-1/2 bg-white sm:mx-0">
+    <div class="flex flex-col w-full p-4">
+      <div class="flex flex-col flex-1 justify-center">
+        <h2 class="text-lg mb-3">Tasks</h2>
+        <%= form_with(model: [@project, @task]) do |form| %>
+          <div class="flex mb-3">
+            <%= form.text_field :content, class: 'w-full rounded-lg mr-2', placeholder: 'Add a task' %>
+            <%= form.submit 'Create', class: 'btn btn-primary' %>
+          </div>
+          <div class="mb-3">
+            <div data-target="forms.errorsList"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
