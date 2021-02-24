@@ -12,10 +12,10 @@
         <h2 class="text-lg mb-3">Tasks (<%= @project.tasks.count %>)</h2>
         <%= form_with(
               model: [@project, @task],
-              html: { data: { reflex: "submit->Task#create" }}) do |form| %>
+              html: { data: { controller: 'task' }}) do |form| %>
           <div class="flex mb-3">
-            <%= form.text_field :content, class: 'w-full rounded-lg mr-2', placeholder: 'Add a task' %>
-            <%= form.submit 'Create', class: 'btn btn-primary' %>
+            <%= form.text_field :content, data: { target: 'task.input' }, class: 'w-full rounded-lg mr-2', placeholder: 'Add a task' %>
+            <%= form.button 'Create', data: { action: 'click->task#create' }, class: 'btn btn-primary' %>
           </div>
         <% end %>
         <div class="mt-5">
