@@ -9,16 +9,28 @@
   <div class="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-1/2 bg-white sm:mx-0">
     <div class="flex flex-col w-full p-4">
       <div class="flex flex-col flex-1 justify-center">
-        <h2 class="text-lg mb-3">Tasks</h2>
-        <%= form_with(model: [@project, @task]) do |form| %>
+        <h2 class="text-lg mb-3">Tasks (<%= @project.tasks.count %>)</h2>
+        <%= form_with(
+              model: [@project, @task],
+              html: { data: { reflex: "submit->Task#create" }}) do |form| %>
           <div class="flex mb-3">
             <%= form.text_field :content, class: 'w-full rounded-lg mr-2', placeholder: 'Add a task' %>
             <%= form.submit 'Create', class: 'btn btn-primary' %>
           </div>
-          <div class="mb-3">
-            <div data-target="forms.errorsList"></div>
-          </div>
         <% end %>
+        <div class="mt-5">
+          <% if @project.tasks.any? %>
+            <ul>
+              <% @project.tasks.each do |task| %>
+                <li class="border-2 bg-gray-200 hover:bg-gray-300 rounded-lg p-2 mb-2">
+                  <%= task.content %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <h3 class="text-md">Add your first task ☝️</h3>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -20,3 +20,5 @@ document.addEventListener('turbolinks:load', function () {
     }, 3000)
   }
 })
+
+import "controllers"

@@ -57,3 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'name_of_person', '~> 1.1'
 gem 'tailwindcss-rails', '~> 0.3.3'
+
+gem "stimulus_reflex", "~> 3.4"
